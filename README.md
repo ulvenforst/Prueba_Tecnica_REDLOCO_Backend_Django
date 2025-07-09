@@ -36,10 +36,10 @@ RickAndMortyClient/
 │   ├── manage.py
 │   ├── Dockerfile
 │   └── requirements.txt
-├ .env
-├ .env.example
-├ docker-compose.yml
-└ README.md
+.env
+.env.example
+docker-compose.yml
+README.md
 ```
 
 ---
