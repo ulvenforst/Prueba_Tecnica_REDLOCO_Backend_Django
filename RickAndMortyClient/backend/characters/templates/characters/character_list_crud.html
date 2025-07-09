@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Personajes Guardados</title></head>
+<body>
+    <h1>Personajes en la Base de Datos</h1>
+    <a href="{% url 'character-crud-create' %}">Crear nuevo personaje</a>
+    <ul>
+        {% for character in characters %}
+            <li>
+                <strong>{{ character.name }}</strong> - {{ character.species }} - {{ character.status }}
+                | <a href="{% url 'character-crud-edit' character.pk %}">Editar</a>
+                | <a href="{% url 'character-crud-delete' character.pk %}">Eliminar</a>
+            </li>
+        {% empty %}
+            <li>No hay personajes guardados aún.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

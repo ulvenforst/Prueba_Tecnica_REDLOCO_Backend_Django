@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Eliminar personaje</title></head>
+<body>
+    <h1>¿Eliminar personaje "{{ object.name }}"?</h1>
+    <form method="post">{% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+    </form>
+    <a href="{% url 'character-crud-list' %}">Cancelar</a>
+</body>
+</html>
+

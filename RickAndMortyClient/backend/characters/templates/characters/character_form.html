@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Formulario de personaje</title></head>
+<body>
+    <h1>{{ view.object.pk|yesno:"Editar personaje,Nuevo personaje" }}</h1>
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="{% url 'character-crud-list' %}">Volver</a>
+</body>
+</html>
+

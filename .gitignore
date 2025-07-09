@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.log
+
+# Django
+db.sqlite3
+.env
+.env.*
+*.sqlite3
+*.pyc
+
+# Docker
+*.pid
+*.bak
+*.swp
+.docker/
+docker-compose.override.yml
+
+# VSCode / Editor config
+.vscode/
+*.code-workspace
+
+# Virtual env
+venv/
+ENV/
+env/
+.venv/
+
+# Migrations
+**/migrations/**/__pycache__/
+**/migrations/*.pyc
+**/migrations/*.pyo
+**/migrations/*.pyd
+**/migrations/*.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+

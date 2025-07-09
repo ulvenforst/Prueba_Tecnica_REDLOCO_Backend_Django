@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seleccionar Personajes</title>
+</head>
+<body>
+    <h1>Rick and Morty – Selección de personajes</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for character in characters %}
+            <div style="margin-bottom: 1em; border: 1px solid #ccc; padding: 10px;">
+                <label>
+                    <input type="checkbox" name="character_ids" value="{{ character.id }}">
+                    {{ character.name }} - {{ character.species }} ({{ character.status }})
+                </label><br>
+                <img src="{{ character.image }}" width="100"><br>
+            </div>
+        {% endfor %}
+        <button type="submit">Guardar seleccionados</button>
+    </form>
+</body>
+</html>
+
