@@ -7,6 +7,7 @@
     <ul>
         {% for character in characters %}
             <li>
+              {{ character.id}}
                 <strong>{{ character.name }}</strong> - {{ character.species }} - {{ character.status }}
                 | <a href="{% url 'character-crud-edit' character.pk %}">Editar</a>
                 | <a href="{% url 'character-crud-delete' character.pk %}">Eliminar</a>

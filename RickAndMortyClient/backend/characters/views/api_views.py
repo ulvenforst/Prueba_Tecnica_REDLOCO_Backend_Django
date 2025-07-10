@@ -17,6 +17,7 @@ def fetch_characters_view(request):
 
 @api_view(['POST'])
 def save_characters_view(request):
+    print("Saving characters...")
     selected_ids = request.data.get('character_ids', [])
     if not selected_ids:
         return Response({'error': 'No character_ids provided'}, status=status.HTTP_400_BAD_REQUEST)
@@ -28,6 +29,7 @@ def save_characters_view(request):
     saved = []
     for character in data.get("results", []):
         if character["id"] in selected_ids:
+            print(f"{character['id']} - {character['name']}")
             obj, _ = Character.objects.get_or_create(
                 api_id=character["id"],
                 defaults={
@@ -41,4 +43,4 @@ def save_characters_view(request):
             )
             saved.append(obj.api_id)
 
-    return Response({'saved_ids': saved}, status=status.HTTP_201_CREATED)
+    return Response({'saved_ids': saved}, status=Status.HTTP_201_CREATED)

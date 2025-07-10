@@ -5,11 +5,16 @@ from ..models import Character
 
 @csrf_exempt  
 def select_characters_view(request):
+    page = int(request.GET.get("page", 1))
+    data = fetch_characters(page=page)
+    characters = data.get("results", []) if data else []
+    info = data.get("info", {}) if data else {}
+
+
     if request.method == 'POST':
         selected_ids = request.POST.getlist('character_ids')
+        next_page = request.POST.get("next_page")
         if selected_ids:
-            data = fetch_characters()
-            characters = data.get("results", []) if data else []
             for character in characters:
                 if str(character["id"]) in selected_ids:
                     Character.objects.get_or_create(
@@ -23,9 +28,16 @@ def select_characters_view(request):
                             "image": character["image"]
                         }
                     )
-        return redirect('character-select') 
+        # Si se hizo clic en “Guardar y siguiente”
+        if next_page:
+            return redirect(f"{request.path}?page={int(page) + 1}")
+        return redirect(f"{request.path}?page={page}")
 
-    data = fetch_characters()
-    characters = data.get("results", []) if data else []
-    return render(request, 'characters/character_list.html', {"characters": characters})
+    return render(request, 'characters/character_list.html', {
+        "characters": characters,
+        "page": page,
+        "has_next": info.get("next") is not None,
+        "has_prev": info.get("prev") is not None,
+    })
+
 
